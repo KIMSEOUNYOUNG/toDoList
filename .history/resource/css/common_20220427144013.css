@@ -115,7 +115,6 @@ input[type=checkbox]{
     opacity: 0;
 }
 .del_chk input[type=checkbox]:checked + .tdList_box::after {
-    display: block;
     box-shadow: 0 0 0 3px var(--red) inset;
     /* background-color: #eee; */
 }

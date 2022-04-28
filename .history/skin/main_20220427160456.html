@@ -140,19 +140,15 @@
     }
 
     // tdList_box 삭제
-
-    $('.btn.del:not(.chk)').on('click', function(){
+    function tdBoxDel(){
         if($tdBox < 1){
             alert('삭제할 리스트가 없습니다.');
         } else {
-            var $delChkBox = document.querySelectorAll('.del_chk > input');
-
-            $(this).hide().siblings('.btn.del').show();
-
-            $($delChkBox).removeAttr('disabled');
-
+            alert($(this));
         }
-    });
+    }
+
+    $('.btn.del:not(.chk)').on('click', tdBoxDel)
     
 </script>
 </html>

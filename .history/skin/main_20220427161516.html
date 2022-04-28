@@ -141,6 +141,7 @@
 
     // tdList_box 삭제
 
+
     $('.btn.del:not(.chk)').on('click', function(){
         if($tdBox < 1){
             alert('삭제할 리스트가 없습니다.');
@@ -150,7 +151,6 @@
             $(this).hide().siblings('.btn.del').show();
 
             $($delChkBox).removeAttr('disabled');
-
         }
     });
     

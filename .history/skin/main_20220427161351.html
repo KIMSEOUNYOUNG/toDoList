@@ -140,17 +140,19 @@
     }
 
     // tdList_box 삭제
+    function tdBoxDel(){
+        var $delChkBox = document.querySelectorAll('.del_chk > input');
+
+        $($delChkBox).removeAttr('disabled', 'able');
+
+        $(this).hide().siblings('.btn.del').show();
+    }
 
     $('.btn.del:not(.chk)').on('click', function(){
         if($tdBox < 1){
             alert('삭제할 리스트가 없습니다.');
         } else {
-            var $delChkBox = document.querySelectorAll('.del_chk > input');
-
-            $(this).hide().siblings('.btn.del').show();
-
-            $($delChkBox).removeAttr('disabled');
-
+            tdBoxDel();
         }
     });
     
