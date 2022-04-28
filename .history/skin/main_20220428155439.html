@@ -175,13 +175,13 @@
         });
     });
 
-    // 클릭 이벤트
+    // 모바일 클릭 이벤트
     var winWidth = window.innerWidth;
 
     var $tdBox = document.querySelectorAll('.tdList_box');
 
     $tdBox.forEach(function(el){
-        // 모바일 클릭
+        
         if(winWidth <= 720){
             $(el).on('click', function(e){
                 $(this).addClass('mob_on');
@@ -189,14 +189,15 @@
         } else {
             $($tdBox).off('click').removeClass('mob_on');
         }
-        
     });
     // // 리사이징
     window.addEventListener('resize', function(){
         var winWidth = window.innerWidth;
 
+        var $tdBox = document.querySelectorAll('.tdList_box');
+
         $tdBox.forEach(function(el){
-            // 모바일 클릭
+        
             if(winWidth <= 720){
                 $(el).on('click', function(e){
                     $(this).addClass('mob_on');
@@ -204,27 +205,17 @@
             } else {
                 $($tdBox).off('click').removeClass('mob_on');
             }
-            
         });
     });
 
     // toDoList 추가 이벤트
-    function tdPrint(e){
+    function tdPrint(){
         var tdTxt = document.getElementById('td_add');
-
-        // if(window.event.keyCode == 13){
-        //     // console.log(e.target)
-        //     $tdBox.forEach(function(box){
-
-        //         // var tdLBox = $(box).children('.tdList_list_box');
-        //         console.log(tdTxt)
-        //     });
-        // }
 
         if(window.event.keyCode == 13){
             var tdAdd = tdTxt.value;
 
-            var tdLBox = document.querySelector('.tdList_list_box');
+            var tdLBox =  document.querySelector(".tdList_list_box");
             var newList = document.createElement("li");
 
             $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del"><i class="icon_trash"></i></button></label></li>');
@@ -235,6 +226,7 @@
     }
 
     // tdList_box 삭제
+
     $('.btn.del:not(.chk)').on('click', function(){
         var boxNum = $tdBox.length;
         if(boxNum < 1){
@@ -243,22 +235,16 @@
             var $delChkBox = document.querySelectorAll('.del_chk > input');
 
             $(this).hide().siblings('.btn.del').show();
-            $($delChkBox).attr('disabled', false);
-
-            $delChkBox.forEach(function(el){
-                $(el).on('click', function(){
-                    $(this).toggleClass('checked');
-                });
-            });
+            $($delChkBox).removeAttr('disabled').attr(checked);
         }
     });
 
+    
+    
     function delBox(){
-        var chk = document.querySelectorAll('.checked');
+        var chk = document.querySelectorAll('.del_chk > input');
 
-        $(chk).closest('div').remove();
-        $('.del_chk > input').attr('disabled', true);
-        $('.chk').hide().siblings('.del').show();
+        console.log($(chk).find('checked'))
     }
     
 </script>

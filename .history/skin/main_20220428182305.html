@@ -224,12 +224,15 @@
         if(window.event.keyCode == 13){
             var tdAdd = tdTxt.value;
 
-            var tdLBox = document.querySelector('.tdList_list_box');
-            var newList = document.createElement("li");
+            var tdLBox = $(box).children('.tdList_list_box');
 
-            $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del"><i class="icon_trash"></i></button></label></li>');
+            console.log(tdLBox)
 
-            tdLBox.appendChild(newList);
+            // var newList = document.createElement("li");
+
+            // $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del"><i class="icon_trash"></i></button></label></li>');
+
+            // tdLBox.appendChild(newList);
         }
         tdTxt.value = null;
     }
