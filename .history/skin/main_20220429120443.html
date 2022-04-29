@@ -213,20 +213,18 @@
         var curretBox = window.event.target;
 
         if(window.event.keyCode == 13 && $(curretBox).hasClass('td_add')){
-            var tdAdd = curretBox.value;
+            var tdAdd = $(curretBox).find('td_add').value;
 
-            var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
+            console.log(tdAdd)
+
             // var tdLBox = document.querySelector('.tdList_list_box');
-            // console.log(tdLBox);
+            // var newList = document.createElement("li");
 
-            var newList = document.createElement("li");
+            // $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del"><i class="icon_trash"></i></button></label></li>');
 
-            $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del"><i class="icon_trash"></i></button></label></li>');
-
-            tdLBox.append(newList);
-
-            curretBox.value = null;
+            // tdLBox.appendChild(newList);
         }
+        // curretBox.value = null;
     }
 
     // tdList_box 삭제

@@ -56,7 +56,7 @@
                                 <form >
                                     <input type="text" style="display: none;">
                                     <!-- <input class="bn" id="td_add" type="text" onkeypress="if(window.event.keyCode == 13){tdPrint();}" placeholder="할 일을 입력 후, Enter를 누르세요."> -->
-                                    <input class="td_add bn" type="text" onkeypress="tdPrint()" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
+                                    <input class="bn" class="td_add" type="text" onkeypress="tdPrint()" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
                                 </form>
                             </div>
                             <div class="tdList_btn_box toggle_on">
@@ -99,7 +99,7 @@
                                 <form >
                                     <input type="text" style="display: none;">
                                     <!-- <input class="bn" class="td_add" type="text" onkeypress="if(window.event.keyCode == 13){tdPrint();}" placeholder="할 일을 입력 후, Enter를 누르세요."> -->
-                                    <input class="td_add bn" type="text" onkeypress="tdPrint();" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
+                                    <input class="bn" class="td_add" type="text" onkeypress="tdPrint();" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
                                 </form>
                             </div>
                             <div class="tdList_btn_box toggle_on">
@@ -142,7 +142,7 @@
                                 <form >
                                     <input type="text" style="display: none;">
                                     <!-- <input class="bn" class="td_add" type="text" onkeypress="if(window.event.keyCode == 13){tdPrint();}" placeholder="할 일을 입력 후, Enter를 누르세요."> -->
-                                    <input class="td_add bn" type="text" onkeypress="tdPrint();" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
+                                    <input class="bn" class="td_add" type="text" onkeypress="tdPrint();" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
                                 </form>
                             </div>
                             <div class="tdList_btn_box toggle_on">
@@ -208,25 +208,30 @@
         });
     });
 
-    // tdList_tit toDoList 추가 이벤트
+    // toDoList 추가 이벤트
     function tdPrint(){
-        var curretBox = window.event.target;
+        var tdTxt = document.getElementById('td_add');
 
-        if(window.event.keyCode == 13 && $(curretBox).hasClass('td_add')){
-            var tdAdd = curretBox.value;
+        // if(window.event.keyCode == 13){
+        //     // console.log(e.target)
+        //     $tdBox.forEach(function(box){
 
-            var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
-            // var tdLBox = document.querySelector('.tdList_list_box');
-            // console.log(tdLBox);
+        //         // var tdLBox = $(box).children('.tdList_list_box');
+        //         console.log(tdTxt)
+        //     });
+        // }
 
+        if(window.event.keyCode == 13){
+            var tdAdd = tdTxt.value;
+
+            var tdLBox = document.querySelector('.tdList_list_box');
             var newList = document.createElement("li");
 
             $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del"><i class="icon_trash"></i></button></label></li>');
 
-            tdLBox.append(newList);
-
-            curretBox.value = null;
+            tdLBox.appendChild(newList);
         }
+        tdTxt.value = null;
     }
 
     // tdList_box 삭제
@@ -256,9 +261,9 @@
         $('.chk').hide().siblings('.del').show();
     }
 
-    // function addBox(){
-    //     var 
-    // }
+    function addBox(){
+        var 
+    }
     
 </script>
 </html>
