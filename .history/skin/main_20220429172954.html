@@ -79,18 +79,15 @@
     $(document).ready(function(){
         txtBoxOn();
     });
-
     function txtBoxOn(){
         var plusBtn = document.querySelectorAll(".tdList_btn");
-
-        console.log(plusBtn)
 
         plusBtn.forEach(function(btn){
             btn.addEventListener("click", function(){
                 var btnBox = btn.parentNode;
                 var tdListBox = btnBox.parentNode;
                 var toggleOn = $(tdListBox).children('.toggle_on');
-
+                
                 // console.log(toggleOn);
                 $(toggleOn).toggleClass('on');
             });
@@ -212,7 +209,7 @@
         newCol.classList.add('col_8');
         newCol.innerHTML = newBox;
 
-        boxWrap.prepend(newCol);
+        boxWrap.appendChild(newCol);
     }
     
 </script>

@@ -76,26 +76,18 @@
 </body>
 <script>
     // 입력 박스 이벤트
-    $(document).ready(function(){
-        txtBoxOn();
-    });
+    const plusBtn = document.querySelectorAll(".tdList_btn");
 
-    function txtBoxOn(){
-        var plusBtn = document.querySelectorAll(".tdList_btn");
-
-        console.log(plusBtn)
-
-        plusBtn.forEach(function(btn){
-            btn.addEventListener("click", function(){
-                var btnBox = btn.parentNode;
-                var tdListBox = btnBox.parentNode;
-                var toggleOn = $(tdListBox).children('.toggle_on');
-
-                // console.log(toggleOn);
-                $(toggleOn).toggleClass('on');
-            });
+    plusBtn.forEach(function(btn){
+        btn.addEventListener("click", function(){
+            var btnBox = btn.parentNode;
+            var tdListBox = btnBox.parentNode;
+            var toggleOn = $(tdListBox).children('.toggle_on');
+            
+            // console.log(toggleOn);
+            $(toggleOn).toggleClass('on');
         });
-    }
+    });
 
     // 클릭 이벤트
     var winWidth = window.innerWidth;
@@ -149,7 +141,6 @@
 
     // tdList_box 삭제
     $('.btn.del:not(.chk)').on('click', function(){
-        var $tdBox = document.querySelectorAll('.tdList_box');
         var boxNum = $tdBox.length;
         console.log(boxNum)
         
@@ -212,7 +203,7 @@
         newCol.classList.add('col_8');
         newCol.innerHTML = newBox;
 
-        boxWrap.prepend(newCol);
+        boxWrap.appendChild(newCol);
     }
     
 </script>

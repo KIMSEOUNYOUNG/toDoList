@@ -75,7 +75,7 @@
     </div>
 </body>
 <script>
-    // 입력 박스 이벤트
+    입력 박스 이벤트
     $(document).ready(function(){
         txtBoxOn();
     });
@@ -85,12 +85,12 @@
 
         console.log(plusBtn)
 
-        plusBtn.forEach(function(btn){
+        plusBtn.forEach(function(btn, idx){
             btn.addEventListener("click", function(){
                 var btnBox = btn.parentNode;
                 var tdListBox = btnBox.parentNode;
                 var toggleOn = $(tdListBox).children('.toggle_on');
-
+                console.log(idx)
                 // console.log(toggleOn);
                 $(toggleOn).toggleClass('on');
             });
@@ -212,7 +212,9 @@
         newCol.classList.add('col_8');
         newCol.innerHTML = newBox;
 
-        boxWrap.prepend(newCol);
+        boxWrap.appendChild(newCol);
+
+        txtBoxOn();
     }
     
 </script>

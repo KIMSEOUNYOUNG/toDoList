@@ -85,16 +85,27 @@
 
         console.log(plusBtn)
 
-        plusBtn.forEach(function(btn){
-            btn.addEventListener("click", function(){
+        $(plusBtn).each(function(idx, el){
+            $(el).on('click', function(){
                 var btnBox = btn.parentNode;
                 var tdListBox = btnBox.parentNode;
                 var toggleOn = $(tdListBox).children('.toggle_on');
-
+                
                 // console.log(toggleOn);
                 $(toggleOn).toggleClass('on');
             });
         });
+
+        // plusBtn.forEach(function(btn){
+        //     btn.addEventListener("click", function(){
+        //         var btnBox = btn.parentNode;
+        //         var tdListBox = btnBox.parentNode;
+        //         var toggleOn = $(tdListBox).children('.toggle_on');
+                
+        //         // console.log(toggleOn);
+        //         $(toggleOn).toggleClass('on');
+        //     });
+        // });
     }
 
     // 클릭 이벤트
@@ -212,7 +223,9 @@
         newCol.classList.add('col_8');
         newCol.innerHTML = newBox;
 
-        boxWrap.prepend(newCol);
+        boxWrap.appendChild(newCol);
+
+        txtBoxOn();
     }
     
 </script>
