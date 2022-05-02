@@ -63,75 +63,73 @@
     </div>
 </body>
 <script>
-    const TDLArr = [];
+    // const TDLArr = [];
+        
+    // const allTDL = JSON.stringify(TDLArr);
 
-    let allTD;
+    // // todoListBox 추가
+    // function addBox(){
 
-    // localStorage.setItem('toDoList', allTDL);
+    //     const nowDate = new Date();
+    //     const year = nowDate.getFullYear();
+    //     const month = nowDate.getMonth();
+    //     const date = nowDate.getDate();
+    //     const day = nowDate.getDay();
+    //     const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
-    // todoListBox 추가
-    function addBox(){
+    //     let remDoList = 0;
 
-        const nowDate = new Date();
-        const year = nowDate.getFullYear();
-        const month = nowDate.getMonth();
-        const date = nowDate.getDate();
-        const day = nowDate.getDay();
-        const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    //     const titAdd = '';
+    //     const tdAdd = {};
 
-        let remDoList = 0;
+    //     const TDLobj = {
+    //         num: TDLArr.length,
+    //         date: nowDate,
+    //         title: titAdd,
+    //         list : tdAdd,
+    //         remain: remDoList
+    //     }
 
-        const titAdd = '';
-        const tdAdd = [];
+    //     TDLArr.push(TDLobj);
 
-        const TDLobj = {
-            num: TDLArr.length,
-            date: nowDate,
-            title: titAdd,
-            list : tdAdd,
-            remain: remDoList
-        }
+    //     localStorage.setItem('toDoList', JSON.stringify(TDLArr));
+    //     console.log(localStorage.getItem('toDoList'));
 
-        TDLArr.push(TDLobj);
 
-        allTDL = JSON.stringify(TDLArr);
+    //     var newBox = `<label class="del_chk">
+    //                             <input type="checkbox" disabled>
+    //                             <div class="tdList_box">
 
-        localStorage.setItem('toDoList', allTDL);
+    //                                 <div class="tdList_tit_box">
+    //                                     <input type="text" class="tdList_tit bn p_0" placeholder="제목을 입력하세요" onkeypress="tdPrint(this)">
+    //                                     <p class="tdList_date">${year}년 ${month + 1}월 ${date}일 ${days[day]}</p>
+    //                                     <div class="tdList_remain"><b>할 일 ${remDoList}개 남음</b></div>
+    //                                 </div>
 
-        var newBox = `<label class="del_chk">
-                                <input type="checkbox" disabled>
-                                <div class="tdList_box">
+    //                                     <ul class="tdList_list_box"></ul>
 
-                                    <div class="tdList_tit_box">
-                                        <input type="text" class="tdList_tit bn p_0" placeholder="제목을 입력하세요" onkeypress="tdPrint(this)">
-                                        <p class="tdList_date">${year}년 ${month + 1}월 ${date}일 ${days[day]}</p>
-                                        <div class="tdList_remain"><b>할 일 ${remDoList}개 남음</b></div>
-                                    </div>
+    //                                 <div class="txt_box toggle_on">
+    //                                     <form >
+    //                                         <input type="text" style="display: none;">
+    //                                         <input class="td_add bn" type="text" onkeypress="tdPrint(this)" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
+    //                                     </form>
+    //                                 </div>
+    //                                 <div class="tdList_btn_box toggle_on" onclick="txtBoxOn(this)">
+    //                                     <button class="tdList_btn">
+    //                                         <i class="icon_plus"></i>
+    //                                     </button>
+    //                                 </div>
 
-                                        <ul class="tdList_list_box"></ul>
+    //                             </div>
+    //                     </label>`;
+    //     var boxWrap = document.querySelector('.row');
+    //     var newCol = document.createElement('div');
 
-                                    <div class="txt_box toggle_on">
-                                        <form >
-                                            <input type="text" style="display: none;">
-                                            <input class="td_add bn" type="text" onkeypress="tdPrint(this)" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
-                                        </form>
-                                    </div>
-                                    <div class="tdList_btn_box toggle_on" onclick="txtBoxOn(this)">
-                                        <button class="tdList_btn">
-                                            <i class="icon_plus"></i>
-                                        </button>
-                                    </div>
+    //     newCol.classList.add('col_8');
+    //     newCol.innerHTML = newBox;
 
-                                </div>
-                        </label>`;
-        var boxWrap = document.querySelector('.row');
-        var newCol = document.createElement('div');
-
-        newCol.classList.add('col_8');
-        newCol.innerHTML = newBox;
-
-        boxWrap.prepend(newCol);
-    }
+    //     boxWrap.prepend(newCol);
+    // }
 
     // 입력 박스 이벤트
     function txtBoxOn(){
@@ -199,8 +197,6 @@
                 alert('할 일을 입력해 주세요.');
             }
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
-            var localInfo = JSON.parse(allTDL);
-
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
 
@@ -242,8 +238,6 @@
 
     function delBox(){
         var chk = $('.checked');
-
-        console.log(chk.length)
 
         $(chk).closest('div').remove();
         $('.del_chk > input').attr('disabled', true);

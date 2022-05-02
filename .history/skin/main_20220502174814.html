@@ -204,6 +204,14 @@
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
 
+            var allBox = document.querySelectorAll('.tdList_box');
+
+            allBox.forEach(function(el, idx){
+                console.log(localInfo[idx].title)
+            });
+
+            // localStorage.setItem()
+
             titBox.prepend('<div class="tdList_tit p_0">'+ titAdd +'</div>');
             curretBox.remove();
         }        

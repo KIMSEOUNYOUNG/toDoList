@@ -65,8 +65,6 @@
 <script>
     const TDLArr = [];
 
-    let allTD;
-
     // localStorage.setItem('toDoList', allTDL);
 
     // todoListBox 추가
@@ -94,7 +92,7 @@
 
         TDLArr.push(TDLobj);
 
-        allTDL = JSON.stringify(TDLArr);
+        const allTDL = JSON.stringify(TDLArr);
 
         localStorage.setItem('toDoList', allTDL);
 
@@ -199,8 +197,6 @@
                 alert('할 일을 입력해 주세요.');
             }
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
-            var localInfo = JSON.parse(allTDL);
-
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
 
@@ -242,8 +238,6 @@
 
     function delBox(){
         var chk = $('.checked');
-
-        console.log(chk.length)
 
         $(chk).closest('div').remove();
         $('.del_chk > input').attr('disabled', true);
