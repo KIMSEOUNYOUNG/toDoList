@@ -63,6 +63,9 @@
     </div>
 </body>
 <script>
+    $(document).ready(function(){
+        localStorage.getItem('toDoList');
+    });
     const TDLArr = [];
 
     let allTD;
@@ -178,7 +181,6 @@
     // tdList_tit toDoList 추가 이벤트
     function tdPrint(){
         var curretBox = window.event.target;
-        // var localInfo = JSON.parse(localStorage.getItem('toDoList'));
 
         if(window.event.keyCode == 13 && $(curretBox).hasClass('td_add')){
             var tdAdd = curretBox.value;
@@ -201,6 +203,8 @@
                 alert('할 일을 입력해 주세요.');
             }
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
+            var localInfo = JSON.parse(allTDL);
+
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
 
