@@ -62,13 +62,9 @@
     </div>
 </body>
 <script>
-    const TDLArr = [];
-        
-    const allTDL = JSON.stringify(TDLArr);
 
     // todoListBox 추가
     function addBox(){
-
         const nowDate = new Date();
         const year = nowDate.getFullYear();
         const month = nowDate.getMonth();
@@ -77,23 +73,6 @@
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
         let remDoList = 0;
-
-        const titAdd = '';
-        const tdAdd = {};
-
-        const TDLobj = {
-            num: TDLArr.length,
-            date: nowDate,
-            title: titAdd,
-            list : tdAdd,
-            remain: remDoList
-        }
-
-        TDLArr.push(TDLobj);
-
-        localStorage.setItem('toDoList', JSON.stringify(TDLArr));
-        console.log(localStorage.getItem('toDoList'));
-
 
         var newBox = `<label class="del_chk">
                                 <input type="checkbox" disabled>

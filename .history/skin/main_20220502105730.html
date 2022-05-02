@@ -26,7 +26,7 @@
             </div>
             <div class="row wp mb_75">
 
-                <!-- <div class="col_8">
+                <div class="col_8">
 
                     <label class="del_chk">
                         <input type="checkbox" disabled>
@@ -38,11 +38,24 @@
                                 <div class="tdList_remain"><b>할 일 n개 남음</b></div>
                             </div>
     
-                                <ul class="tdList_list_box"></ul>
+                                <ul class="tdList_list_box">
+
+                                    <!-- <li>
+                                        <label for="toDoList" class="fm_ch">
+                                            <input class="chBox" type="checkbox" name="" id="toDoList">
+                                            <div id="td_result" class="tdList_list_txt">할 일을 적어봅시다.</div>
+                                            <button class="list_del">
+                                                <i class="icon_trash"></i>
+                                            </button>
+                                        </label>
+                                    </li> -->
+                                    
+                                </ul>
     
                             <div class="txt_box toggle_on">
                                 <form >
                                     <input type="text" style="display: none;">
+                                    <!-- <input class="bn" id="td_add" type="text" onkeypress="if(window.event.keyCode == 13){tdPrint();}" placeholder="할 일을 입력 후, Enter를 누르세요."> -->
                                     <input class="td_add bn" type="text" onkeypress="tdPrint(this)" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
                                 </form>
                             </div>
@@ -55,81 +68,13 @@
                         </div>
                     </label>
                     
-                </div> -->
+                </div>
                 
             </div>
         </div>
     </div>
 </body>
 <script>
-    const TDLArr = [];
-        
-    const allTDL = JSON.stringify(TDLArr);
-
-    // todoListBox 추가
-    function addBox(){
-
-        const nowDate = new Date();
-        const year = nowDate.getFullYear();
-        const month = nowDate.getMonth();
-        const date = nowDate.getDate();
-        const day = nowDate.getDay();
-        const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-
-        let remDoList = 0;
-
-        const titAdd = '';
-        const tdAdd = {};
-
-        const TDLobj = {
-            num: TDLArr.length,
-            date: nowDate,
-            title: titAdd,
-            list : tdAdd,
-            remain: remDoList
-        }
-
-        TDLArr.push(TDLobj);
-
-        localStorage.setItem('toDoList', JSON.stringify(TDLArr));
-        console.log(localStorage.getItem('toDoList'));
-
-
-        var newBox = `<label class="del_chk">
-                                <input type="checkbox" disabled>
-                                <div class="tdList_box">
-
-                                    <div class="tdList_tit_box">
-                                        <input type="text" class="tdList_tit bn p_0" placeholder="제목을 입력하세요" onkeypress="tdPrint(this)">
-                                        <p class="tdList_date">${year}년 ${month + 1}월 ${date}일 ${days[day]}</p>
-                                        <div class="tdList_remain"><b>할 일 ${remDoList}개 남음</b></div>
-                                    </div>
-
-                                        <ul class="tdList_list_box"></ul>
-
-                                    <div class="txt_box toggle_on">
-                                        <form >
-                                            <input type="text" style="display: none;">
-                                            <input class="td_add bn" type="text" onkeypress="tdPrint(this)" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
-                                        </form>
-                                    </div>
-                                    <div class="tdList_btn_box toggle_on" onclick="txtBoxOn(this)">
-                                        <button class="tdList_btn">
-                                            <i class="icon_plus"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                        </label>`;
-        var boxWrap = document.querySelector('.row');
-        var newCol = document.createElement('div');
-
-        newCol.classList.add('col_8');
-        newCol.innerHTML = newBox;
-
-        boxWrap.prepend(newCol);
-    }
-
     // 입력 박스 이벤트
     function txtBoxOn(){
         var txtBtn =  window.event.target;
@@ -177,24 +122,14 @@
 
         if(window.event.keyCode == 13 && $(curretBox).hasClass('td_add')){
             var tdAdd = curretBox.value;
-            
-            if(tdAdd !== ''){
-                var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
-                var newList = document.createElement("li");
-                var reDo = $(curretBox).closest('div').siblings('.tdList_tit_box').find('.tdList_remain b');
-                var reDoNum = newList.length;
+            var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
+            var newList = document.createElement("li");
 
-                $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del" onclick="delList(this);"><i class="icon_trash"></i></button></label></li>');
+            $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del" onclick="delList(this);"><i class="icon_trash"></i></button></label></li>');
 
-                tdLBox.append(newList);
-                $(reDo).text("할 일 " + reDoNum + "개 남음");
-                curretBox.value = null;
+            tdLBox.append(newList);
 
-                // console.log(remDoList++)
-
-            } else {
-                alert('할 일을 입력해 주세요.');
-            }
+            curretBox.value = null;
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
@@ -208,8 +143,6 @@
         var list = window.event.target;
 
         list.closest('li').remove();
-        // remDoList--;
-        console.log(remDoList);
     }
 
     // tdList_box 삭제
@@ -244,5 +177,47 @@
         $('.tdList_btn_box').show();
     }
 
+    function addBox(){
+        const nowDate = new Date();
+        const year = nowDate.getFullYear();
+        const month = nowDate.getMonth();
+        const date = nowDate.getDate();
+        console.log(date);
+        var day = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
+        var newBox = `<label class="del_chk">
+                                <input type="checkbox" disabled>
+                                <div class="tdList_box">
+
+                                    <div class="tdList_tit_box">
+                                        <input type="text" class="tdList_tit bn p_0" placeholder="제목을 입력하세요" onkeypress="tdPrint(this)">
+                                        <p class="tdList_date">2022년 3월 18일 금요일</p>
+                                        <div class="tdList_remain"><b>할 일 n개 남음</b></div>
+                                    </div>
+
+                                        <ul class="tdList_list_box"></ul>
+
+                                    <div class="txt_box toggle_on">
+                                        <form >
+                                            <input type="text" style="display: none;">
+                                            <input class="td_add bn" type="text" onkeypress="tdPrint(this)" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
+                                        </form>
+                                    </div>
+                                    <div class="tdList_btn_box toggle_on" onclick="txtBoxOn(this)">
+                                        <button class="tdList_btn">
+                                            <i class="icon_plus"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                        </label>`;
+        var boxWrap = document.querySelector('.row');
+        var newCol = document.createElement('div');
+
+        newCol.classList.add('col_8');
+        newCol.innerHTML = newBox;
+
+        boxWrap.prepend(newCol);
+    }
+    
 </script>
 </html>

@@ -62,12 +62,12 @@
     </div>
 </body>
 <script>
-    const TDLArr = [];
-        
-    const allTDL = JSON.stringify(TDLArr);
 
     // todoListBox 추가
     function addBox(){
+        const TDLArr = [];
+        
+        const allTDL = JSON.stringify(TDLArr);
 
         const nowDate = new Date();
         const year = nowDate.getFullYear();
@@ -79,10 +79,9 @@
         let remDoList = 0;
 
         const titAdd = '';
-        const tdAdd = {};
+        const tdAdd = [];
 
         const TDLobj = {
-            num: TDLArr.length,
             date: nowDate,
             title: titAdd,
             list : tdAdd,
@@ -91,8 +90,7 @@
 
         TDLArr.push(TDLobj);
 
-        localStorage.setItem('toDoList', JSON.stringify(TDLArr));
-        console.log(localStorage.getItem('toDoList'));
+        console.log(TDLArr)
 
 
         var newBox = `<label class="del_chk">

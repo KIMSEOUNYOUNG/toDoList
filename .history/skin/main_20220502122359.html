@@ -62,13 +62,9 @@
     </div>
 </body>
 <script>
-    const TDLArr = [];
-        
-    const allTDL = JSON.stringify(TDLArr);
 
     // todoListBox 추가
     function addBox(){
-
         const nowDate = new Date();
         const year = nowDate.getFullYear();
         const month = nowDate.getMonth();
@@ -76,24 +72,7 @@
         const day = nowDate.getDay();
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
-        let remDoList = 0;
-
-        const titAdd = '';
-        const tdAdd = {};
-
-        const TDLobj = {
-            num: TDLArr.length,
-            date: nowDate,
-            title: titAdd,
-            list : tdAdd,
-            remain: remDoList
-        }
-
-        TDLArr.push(TDLobj);
-
-        localStorage.setItem('toDoList', JSON.stringify(TDLArr));
-        console.log(localStorage.getItem('toDoList'));
-
+        // let remDoList = 0;
 
         var newBox = `<label class="del_chk">
                                 <input type="checkbox" disabled>
@@ -102,7 +81,7 @@
                                     <div class="tdList_tit_box">
                                         <input type="text" class="tdList_tit bn p_0" placeholder="제목을 입력하세요" onkeypress="tdPrint(this)">
                                         <p class="tdList_date">${year}년 ${month + 1}월 ${date}일 ${days[day]}</p>
-                                        <div class="tdList_remain"><b>할 일 ${remDoList}개 남음</b></div>
+                                        <div class="tdList_remain"><b>할 일 0개 남음</b></div>
                                     </div>
 
                                         <ul class="tdList_list_box"></ul>
@@ -177,10 +156,12 @@
 
         if(window.event.keyCode == 13 && $(curretBox).hasClass('td_add')){
             var tdAdd = curretBox.value;
-            
+            var newList;
+
+            console.log(newList.length)
             if(tdAdd !== ''){
                 var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
-                var newList = document.createElement("li");
+                newList = document.createElement("li");
                 var reDo = $(curretBox).closest('div').siblings('.tdList_tit_box').find('.tdList_remain b');
                 var reDoNum = newList.length;
 
