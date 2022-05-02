@@ -139,12 +139,6 @@
         }        
     }
 
-    function delList(){
-        var target = window.event.target;
-
-        target.closest('li').remove();
-    }
-
     // tdList_box 삭제
     $('.btn.del:not(.chk)').on('click', function(){
         var $tdBox = document.querySelectorAll('.tdList_box');
@@ -157,7 +151,6 @@
             var $delChkBox = $('.del_chk > input');
 
             $(this).hide().siblings('.btn.del').show();
-            $('.tdList_btn_box').hide();
             $($delChkBox).attr('disabled', false);
 
             console.log($delChkBox);
@@ -168,13 +161,16 @@
         }
     });
 
+    function delList(){
+        console.log(window.event.target);
+    }
+
     function delBox(){
         var chk = $('.checked');
 
         $(chk).closest('div').remove();
         $('.del_chk > input').attr('disabled', true);
         $('.chk').hide().siblings('.del').show();
-        $('.tdList_btn_box').show();
     }
 
     function addBox(){

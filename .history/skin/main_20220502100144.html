@@ -125,7 +125,7 @@
             var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
             var newList = document.createElement("li");
 
-            $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del" onclick="delList(this);"><i class="icon_trash"></i></button></label></li>');
+            $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del"><i class="icon_trash"></i></button></label></li>');
 
             tdLBox.append(newList);
 
@@ -139,12 +139,6 @@
         }        
     }
 
-    function delList(){
-        var target = window.event.target;
-
-        target.closest('li').remove();
-    }
-
     // tdList_box 삭제
     $('.btn.del:not(.chk)').on('click', function(){
         var $tdBox = document.querySelectorAll('.tdList_box');
@@ -154,27 +148,37 @@
         if(boxNum < 1){
             alert('삭제할 리스트가 없습니다.');
         } else {
+            // var $delChkBox = document.querySelectorAll('.del_chk > input');
             var $delChkBox = $('.del_chk > input');
 
             $(this).hide().siblings('.btn.del').show();
-            $('.tdList_btn_box').hide();
             $($delChkBox).attr('disabled', false);
 
             console.log($delChkBox);
 
             $($delChkBox).on('click', function(){
-                $(this).addClass('checked');
+                // $($delChkBox).prop('checked', false);
+
+                $(this).prop('checked', true);
             });
+
+            // $delChkBox.forEach(function(el){
+            //     $(el).on('click', function(){
+            //         $(this).toggleClass('checked');
+            //     });
+            // });
         }
     });
 
     function delBox(){
-        var chk = $('.checked');
 
-        $(chk).closest('div').remove();
-        $('.del_chk > input').attr('disabled', true);
-        $('.chk').hide().siblings('.del').show();
-        $('.tdList_btn_box').show();
+        // $('.del_chk > input').find()
+
+        // var chk = document.querySelectorAll('.checked');
+
+        // $(chk).closest('div').remove();
+        // $('.del_chk > input').attr('disabled', true);
+        // $('.chk').hide().siblings('.del').show();
     }
 
     function addBox(){
