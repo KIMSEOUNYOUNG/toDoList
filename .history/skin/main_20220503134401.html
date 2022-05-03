@@ -80,8 +80,18 @@
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
         let remDoList = 0;
+
         const titAdd = '';
         let tdAdd = [];
+
+        const TDLobj = {
+            date: nowDate,
+            title: titAdd,
+            list : tdAdd,
+            remain: remDoList
+        }
+
+        TDLArr.push(TDLobj);
 
         var newBox = `<label class="del_chk">
                                 <input type="checkbox" disabled>
@@ -116,15 +126,6 @@
         newCol.innerHTML = newBox;
 
         boxWrap.prepend(newCol);
-
-        const TDLobj = {
-            date: `${nowDate.getFullYear()}년 ${nowDate.getMonth() + 1}월 ${nowDate.getDate()}일 ${days[nowDate.getDay()]}`,
-            title: titAdd,
-            list : tdAdd,
-            remain: remDoList
-        }
-
-        TDLArr.push(TDLobj);
         addLocal();            
     }
 
@@ -139,7 +140,7 @@
     function drawBox(){
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
-        TDList.forEach(function(el, idx){
+        TDList.forEach(function(box, idx){
             
             var newBox = `<label class="del_chk">
                                 <input type="checkbox" disabled>
@@ -147,8 +148,8 @@
 
                                     <div class="tdList_tit_box">
                                         <input type="text" class="tdList_tit bn p_0" placeholder="제목을 입력하세요" onkeypress="tdPrint(this)">
-                                        <p class="tdList_date">${TDList[idx].date}</p>
-                                        <div class="tdList_remain"><b>할 일 ${TDList[idx].remain}개 남음</b></div>
+                                        <p class="tdList_date">test${idx}</p>
+                                        <div class="tdList_remain"><b>할 일 test${idx}개 남음</b></div>
                                     </div>
 
                                         <ul class="tdList_list_box"></ul>
