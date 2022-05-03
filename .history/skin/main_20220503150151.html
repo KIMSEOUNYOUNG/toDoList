@@ -63,13 +63,13 @@
     </div>
 </body>
 <script>
-    $(document).ready(function(){
-        chkLoData();
-    });
+    // $(document).ready(function(){
+    //     chkLoData();
+    // });
 
     let TDLArr = [];
 
-    function addLocalData(){
+    function addLocal(){
         localStorage.setItem('toDoList', JSON.stringify(TDLArr));
     }
 
@@ -125,8 +125,7 @@
         }
 
         TDLArr.push(TDLobj);
-        
-        addLocalData();            
+        addLocal();            
     }
 
     function chkLoData(){
@@ -191,6 +190,8 @@
     var winWidth = window.innerWidth;
 
     var $tdBox = document.querySelectorAll('.tdList_box');
+
+    console.log($tdBox)
 
     $tdBox.forEach(function(el){
         // 모바일 클릭

@@ -67,10 +67,15 @@
         chkLoData();
     });
 
-    let TDLArr = [];
+    let TDLArr = new Array();
 
-    function addLocalData(){
-        localStorage.setItem('toDoList', JSON.stringify(TDLArr));
+    function addLocalData(list){
+        if(TDLArr.length !== 0){
+            TDLArr = [];
+            localStorage.setItem('toDoList', JSON.stringify(list));
+        } else {
+            addBox();
+        }
     }
 
     // todoListBox 추가
@@ -126,7 +131,7 @@
 
         TDLArr.push(TDLobj);
         
-        addLocalData();            
+        addLocalData(TDLArr);            
     }
 
     function chkLoData(){

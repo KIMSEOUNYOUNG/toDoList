@@ -123,9 +123,8 @@
             list : tdAdd,
             remain: remDoList
         }
-
+        console.log(TDLArr)
         TDLArr.push(TDLobj);
-        
         addLocalData();            
     }
 
@@ -191,6 +190,8 @@
     var winWidth = window.innerWidth;
 
     var $tdBox = document.querySelectorAll('.tdList_box');
+
+    console.log($tdBox)
 
     $tdBox.forEach(function(el){
         // 모바일 클릭

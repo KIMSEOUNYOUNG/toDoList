@@ -73,6 +73,18 @@
         localStorage.setItem('toDoList', JSON.stringify(TDLArr));
     }
 
+    function TDBox(){
+        const TDLobj = {
+            date: '',
+            title: '',
+            list : [],
+            remain: 0
+        }
+        TDLArr.push(TDLobj);
+        
+        addLocalData();         
+    }
+
     // todoListBox 추가
     function addBox(){
 
@@ -80,8 +92,8 @@
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
         let remDoList = 0;
-        const titAdd = '';
-        let tdAdd = [];
+        // const titAdd = '';
+        // let tdAdd = [];
 
         var newBox = `<label class="del_chk">
                                 <input type="checkbox" disabled>
@@ -117,16 +129,17 @@
 
         boxWrap.prepend(newCol);
 
-        const TDLobj = {
-            date: `${nowDate.getFullYear()}년 ${nowDate.getMonth() + 1}월 ${nowDate.getDate()}일 ${days[nowDate.getDay()]}`,
-            title: titAdd,
-            list : tdAdd,
-            remain: remDoList
-        }
+        TDBox();
 
-        TDLArr.push(TDLobj);
-        
-        addLocalData();            
+        // const TDLobj = {
+        //     date: `${nowDate.getFullYear()}년 ${nowDate.getMonth() + 1}월 ${nowDate.getDate()}일 ${days[nowDate.getDay()]}`,
+        //     title: titAdd,
+        //     list : tdAdd,
+        //     remain: remDoList
+        // }
+
+        // TDLArr.push(TDLobj);
+        // addLocal();            
     }
 
     function chkLoData(){
@@ -191,6 +204,8 @@
     var winWidth = window.innerWidth;
 
     var $tdBox = document.querySelectorAll('.tdList_box');
+
+    console.log($tdBox)
 
     $tdBox.forEach(function(el){
         // 모바일 클릭

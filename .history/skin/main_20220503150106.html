@@ -69,7 +69,7 @@
 
     let TDLArr = [];
 
-    function addLocalData(){
+    function addLocal(){
         localStorage.setItem('toDoList', JSON.stringify(TDLArr));
     }
 
@@ -125,8 +125,7 @@
         }
 
         TDLArr.push(TDLobj);
-        
-        addLocalData();            
+        addLocal();            
     }
 
     function chkLoData(){
@@ -192,6 +191,8 @@
 
     var $tdBox = document.querySelectorAll('.tdList_box');
 
+    console.log($tdBox)
+
     $tdBox.forEach(function(el){
         // 모바일 클릭
         if(winWidth <= 720){
@@ -202,6 +203,10 @@
             $($tdBox).off('click').removeClass('mob_on');
         }
     });
+
+    function test(){
+        console.log($('.tdList_box'))
+    }
 
     // // 리사이징
     window.addEventListener('resize', function(){

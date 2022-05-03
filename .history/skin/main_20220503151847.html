@@ -117,6 +117,8 @@
 
         boxWrap.prepend(newCol);
 
+        TDBox();
+
         const TDLobj = {
             date: `${nowDate.getFullYear()}년 ${nowDate.getMonth() + 1}월 ${nowDate.getDate()}일 ${days[nowDate.getDay()]}`,
             title: titAdd,
@@ -125,7 +127,6 @@
         }
 
         TDLArr.push(TDLobj);
-        
         addLocalData();            
     }
 
@@ -191,6 +192,8 @@
     var winWidth = window.innerWidth;
 
     var $tdBox = document.querySelectorAll('.tdList_box');
+
+    console.log($tdBox)
 
     $tdBox.forEach(function(el){
         // 모바일 클릭
