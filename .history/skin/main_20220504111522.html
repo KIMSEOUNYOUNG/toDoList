@@ -69,22 +69,20 @@
 
     let TDLArr = [];
 
-    // function createLocal(){
-    //     localStorage.setItem('toDoList');
-    // }
+    function createLocal(){
+        localStorage.setItem('toDoList');
+    }
 
     function addLocalData(){
         localStorage.setItem('toDoList', JSON.stringify(TDLArr));
     }
 
     function chkLoData(){
-        // let TDList = JSON.parse(localStorage.getItem('toDoList'));
+        let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         if(!(localStorage.getItem('toDoList'))){
-            localStorage.setItem('toDoList');
+            createLocal();
         } else {
-           let TDList = JSON.parse(localStorage.getItem('toDoList'));
- 
             TDList.forEach(function(el){
                 TDLArr.push(el);
                 addLocalData();

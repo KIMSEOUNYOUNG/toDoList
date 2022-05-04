@@ -78,13 +78,11 @@
     }
 
     function chkLoData(){
-        // let TDList = JSON.parse(localStorage.getItem('toDoList'));
+        let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         if(!(localStorage.getItem('toDoList'))){
             localStorage.setItem('toDoList');
         } else {
-           let TDList = JSON.parse(localStorage.getItem('toDoList'));
- 
             TDList.forEach(function(el){
                 TDLArr.push(el);
                 addLocalData();

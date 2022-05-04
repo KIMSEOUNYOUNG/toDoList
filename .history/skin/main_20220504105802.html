@@ -21,7 +21,7 @@
         <div class="wrap">
             <h2 class="con_tit t_center">to do list</h2>
             <div class="btn_box">
-                <button class="btn plus" onclick="addBox(this)">추가</button>
+                <button class="btn plus" onclick="addBox()">추가</button>
                 <button class="btn del ml_10">삭제</button>
                 <button class="btn del chk ml_10" onclick="delBox()">삭제</button>
             </div>
@@ -69,22 +69,27 @@
 
     let TDLArr = [];
 
-    // function createLocal(){
-    //     localStorage.setItem('toDoList');
-    // }
+    function createLocal(){
+        localStorage.setItem('toDoList');
+    }
 
     function addLocalData(){
         localStorage.setItem('toDoList', JSON.stringify(TDLArr));
     }
 
     function chkLoData(){
-        // let TDList = JSON.parse(localStorage.getItem('toDoList'));
+        let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         if(!(localStorage.getItem('toDoList'))){
-            localStorage.setItem('toDoList');
+            createLocal();
         } else {
-           let TDList = JSON.parse(localStorage.getItem('toDoList'));
- 
+            // if(TDList.length !== 0){
+            //     TDList.forEach(function(el){
+            //         TDLArr.push(el);
+            //         addLocalData();
+            //     });
+            // drawBox();
+            // } 
             TDList.forEach(function(el){
                 TDLArr.push(el);
                 addLocalData();
@@ -104,12 +109,10 @@
 
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
-        let boxCount = 0;
-
         var newBox;
-        if(!(localStorage.getItem('toDoList'))){
-            newBox = `<label class="del_chk" for="boxNum_${boxCount++}">
-                                <input type="checkbox" for="boxNum_${boxCount++}" disabled>
+        if(TDList.length == 0){
+            newBox = `<label class="del_chk" for="boxNum_${TDList.length - 1}">
+                                <input type="checkbox" for="boxNum_${TDList.length - 1}" disabled>
                                 <div class="tdList_box">
 
                                     <div class="tdList_tit_box">

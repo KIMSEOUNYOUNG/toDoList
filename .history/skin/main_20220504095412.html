@@ -21,7 +21,7 @@
         <div class="wrap">
             <h2 class="con_tit t_center">to do list</h2>
             <div class="btn_box">
-                <button class="btn plus" onclick="addBox(this)">추가</button>
+                <button class="btn plus" onclick="addBox()">추가</button>
                 <button class="btn del ml_10">삭제</button>
                 <button class="btn del chk ml_10" onclick="delBox()">삭제</button>
             </div>
@@ -69,32 +69,13 @@
 
     let TDLArr = [];
 
-    // function createLocal(){
-    //     localStorage.setItem('toDoList');
-    // }
-
     function addLocalData(){
         localStorage.setItem('toDoList', JSON.stringify(TDLArr));
     }
 
-    function chkLoData(){
-        // let TDList = JSON.parse(localStorage.getItem('toDoList'));
-
-        if(!(localStorage.getItem('toDoList'))){
-            localStorage.setItem('toDoList');
-        } else {
-           let TDList = JSON.parse(localStorage.getItem('toDoList'));
- 
-            TDList.forEach(function(el){
-                TDLArr.push(el);
-                addLocalData();
-            });
-            drawBox();
-        }
-    }
-
     // todoListBox 추가
     function addBox(){
+
         const nowDate = new Date();
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
@@ -102,14 +83,8 @@
         const titAdd = '';
         let tdAdd = [];
 
-        let TDList = JSON.parse(localStorage.getItem('toDoList'));
-
-        let boxCount = 0;
-
-        var newBox;
-        if(!(localStorage.getItem('toDoList'))){
-            newBox = `<label class="del_chk" for="boxNum_${boxCount++}">
-                                <input type="checkbox" for="boxNum_${boxCount++}" disabled>
+        var newBox = `<label class="del_chk">
+                                <input type="checkbox" disabled>
                                 <div class="tdList_box">
 
                                     <div class="tdList_tit_box">
@@ -134,34 +109,6 @@
 
                                 </div>
                         </label>`;
-        } else {
-            newBox = `<label class="del_chk" for="boxNum_${TDList.length}">
-                                <input type="checkbox" for="boxNum_${TDList.length}" disabled>
-                                <div class="tdList_box">
-
-                                    <div class="tdList_tit_box">
-                                        <input type="text" class="tdList_tit bn p_0" placeholder="제목을 입력하세요" onkeypress="tdPrint(this)">
-                                        <p class="tdList_date">${nowDate.getFullYear()}년 ${nowDate.getMonth() + 1}월 ${nowDate.getDate()}일 ${days[nowDate.getDay()]}</p>
-                                        <div class="tdList_remain"><b>할 일 ${remDoList}개 남음</b></div>
-                                    </div>
-
-                                        <ul class="tdList_list_box"></ul>
-
-                                    <div class="txt_box toggle_on">
-                                        <form >
-                                            <input type="text" style="display: none;">
-                                            <input class="td_add bn" type="text" onkeypress="tdPrint(this)" placeholder="할 일을 입력 후, Enter를 누르세요." value="">
-                                        </form>
-                                    </div>
-                                    <div class="tdList_btn_box toggle_on" onclick="txtBoxOn(this)">
-                                        <button class="tdList_btn">
-                                            <i class="icon_plus"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                        </label>`;
-        }
         var boxWrap = document.querySelector('.row');
         var newCol = document.createElement('div');
 
@@ -182,13 +129,25 @@
         addLocalData();            
     }
 
+    function chkLoData(){
+        let TDList = JSON.parse(localStorage.getItem('toDoList'));
+
+        if(TDList.length !== 0){
+            TDList.forEach(function(el){
+                TDLArr.push(el);
+                addLocalData();
+            });
+            drawBox();
+        } 
+    }
+
     function drawBox(){
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         TDList.forEach(function(el, idx){
             
-            var newBox = `<label class="del_chk" for="boxNum_${idx}">
-                                <input type="checkbox" id="boxNum_${idx}" disabled>
+            var newBox = `<label class="del_chk">
+                                <input type="checkbox" disabled>
                                 <div class="tdList_box">
 
                                     <div class="tdList_tit_box">
@@ -292,7 +251,7 @@
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
 
-            getTit(titAdd);
+            getTit(titAdd, num);
 
             titBox.prepend('<div class="tdList_tit p_0">'+ titAdd +'</div>');
 
@@ -300,7 +259,7 @@
         }        
     }
 
-    function getTit(tit){
+    function getTit(tit, num){
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         console.log(TDList)
@@ -346,8 +305,6 @@
         $('.del_chk > input').attr('disabled', true);
         $('.chk').hide().siblings('.del').show();
         $('.tdList_btn_box').show();
-
-        localStorage.clear('toDoList');
     }
 
 </script>
