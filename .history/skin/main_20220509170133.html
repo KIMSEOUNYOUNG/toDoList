@@ -78,9 +78,10 @@
     }
 
     function chkLoData(){
+        // let TDList = JSON.parse(localStorage.getItem('toDoList'));
+
         if(!(localStorage.getItem('toDoList'))){
-            // localStorage.setItem('toDoList');
-            addLocalData();
+            localStorage.setItem('toDoList');
         } else {
            let TDList = JSON.parse(localStorage.getItem('toDoList'));
  
@@ -108,7 +109,7 @@
         var newBox;
         if(!(localStorage.getItem('toDoList'))){
             newBox = `<label class="del_chk" for="boxNum_${boxCount++}">
-                                <input type="checkbox" id="boxNum_${boxCount++}" disabled>
+                                <input type="checkbox" for="boxNum_${boxCount++}" disabled>
                                 <div class="tdList_box">
 
                                     <div class="tdList_tit_box">
@@ -135,7 +136,7 @@
                         </label>`;
         } else {
             newBox = `<label class="del_chk" for="boxNum_${TDList.length}">
-                                <input type="checkbox" id="boxNum_${TDList.length}" disabled>
+                                <input type="checkbox" for="boxNum_${TDList.length}" disabled>
                                 <div class="tdList_box">
 
                                     <div class="tdList_tit_box">
@@ -291,7 +292,7 @@
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
 
-            // getTit(titAdd, num);
+            getTit(titAdd);
 
             titBox.prepend('<div class="tdList_tit p_0">'+ titAdd +'</div>');
 
@@ -299,11 +300,11 @@
         }        
     }
 
-    // function getTit(tit){
-    //     let TDList = JSON.parse(localStorage.getItem('toDoList'));
+    function getTit(tit){
+        let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
-    //     console.log(TDList)
-    // }
+        console.log(TDList)
+    }
 
     function delList(){
         var list = window.event.target;

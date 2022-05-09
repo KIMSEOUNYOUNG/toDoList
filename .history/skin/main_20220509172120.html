@@ -108,7 +108,7 @@
         var newBox;
         if(!(localStorage.getItem('toDoList'))){
             newBox = `<label class="del_chk" for="boxNum_${boxCount++}">
-                                <input type="checkbox" id="boxNum_${boxCount++}" disabled>
+                                <input type="checkbox" for="boxNum_${boxCount++}" disabled>
                                 <div class="tdList_box">
 
                                     <div class="tdList_tit_box">
@@ -135,7 +135,7 @@
                         </label>`;
         } else {
             newBox = `<label class="del_chk" for="boxNum_${TDList.length}">
-                                <input type="checkbox" id="boxNum_${TDList.length}" disabled>
+                                <input type="checkbox" for="boxNum_${TDList.length}" disabled>
                                 <div class="tdList_box">
 
                                     <div class="tdList_tit_box">
@@ -290,6 +290,7 @@
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
+            var num = document.qeury
 
             // getTit(titAdd, num);
 

@@ -290,7 +290,9 @@
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
             var titAdd = curretBox.value;
             var titBox = $(curretBox).closest('div');
+            
 
+            console.log(curretBox)
             // getTit(titAdd, num);
 
             titBox.prepend('<div class="tdList_tit p_0">'+ titAdd +'</div>');
