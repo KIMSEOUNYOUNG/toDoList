@@ -306,8 +306,7 @@
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         TDList[num].title = tit;
-        // console.log(TDList);
-        localStorage.setItem('toDoList', JSON.stringify(TDList));
+        console.log(TDList);
     }
 
     function delList(){

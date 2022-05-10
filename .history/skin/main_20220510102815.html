@@ -98,7 +98,7 @@
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
         let remDoList = 0;
-        let titAdd = '';
+        const titAdd = '';
         let tdAdd = [];
 
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
@@ -289,12 +289,11 @@
             }
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
             var titAdd = curretBox.value;
-            var titBox = $(curretBox).closest('div');
-            var chkInput = titBox.parent().siblings('input').attr('id');
+            var titBox = $(curretBox).closest('div').parent().siblings('input').attr('id');
+            // var chkInput = titBox;
+            console.log(titBox)
 
-            var curretIdx = Number(chkInput.split('_')[1]);
-
-            getTit(titAdd, curretIdx);
+            // getTit(titAdd, num);
 
             titBox.prepend('<div class="tdList_tit p_0">'+ titAdd +'</div>');
 
@@ -302,13 +301,11 @@
         }        
     }
 
-    function getTit(tit, num){
-        let TDList = JSON.parse(localStorage.getItem('toDoList'));
+    // function getTit(tit){
+    //     let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
-        TDList[num].title = tit;
-        // console.log(TDList);
-        localStorage.setItem('toDoList', JSON.stringify(TDList));
-    }
+    //     console.log(TDList)
+    // }
 
     function delList(){
         var list = window.event.target;
