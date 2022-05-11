@@ -93,13 +93,14 @@
         }
     }
 
+    let titAdd
     // todoListBox 추가
     function addBox(){
         const nowDate = new Date();
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
         let remDoList = 0;
-        let titAdd = '';
+        titAdd = '';
         let tdAdd = [];
 
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
@@ -179,6 +180,8 @@
         }
 
         TDLArr.push(TDLobj);
+
+        console.log(TDLArr)
         
         addLocalData();            
     }
@@ -308,12 +311,14 @@
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         TDList[num].title = tit;
-
-        TDLArr = TDList;
-        
+        console.log(TDList);
+        TDList.forEach(function(el){
+            TDLArr.push(el);
+        });
         // localStorage.setItem('toDoList', JSON.stringify(TDList));
         addLocalData();
     }
+
     function delList(){
         var list = window.event.target;
 

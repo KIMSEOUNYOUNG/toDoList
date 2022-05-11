@@ -179,6 +179,8 @@
         }
 
         TDLArr.push(TDLobj);
+
+        console.log(TDLArr)
         
         addLocalData();            
     }
@@ -308,11 +310,10 @@
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         TDList[num].title = tit;
-
-        TDLArr = TDList;
+        console.log(TDList);
         
-        // localStorage.setItem('toDoList', JSON.stringify(TDList));
-        addLocalData();
+        localStorage.setItem('toDoList', JSON.stringify(TDList));
+        // addLocalData();
     }
     function delList(){
         var list = window.event.target;

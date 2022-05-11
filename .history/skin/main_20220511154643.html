@@ -80,7 +80,6 @@
     function chkLoData(){
         if(!(localStorage.getItem('toDoList'))){
             // localStorage.setItem('toDoList');
-            console.log('noDataYet')
             addLocalData();
         } else {
            let TDList = JSON.parse(localStorage.getItem('toDoList'));
@@ -93,13 +92,14 @@
         }
     }
 
+    let titAdd
     // todoListBox 추가
     function addBox(){
         const nowDate = new Date();
         const days = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
 
         let remDoList = 0;
-        let titAdd = '';
+        titAdd = '';
         let tdAdd = [];
 
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
@@ -134,6 +134,8 @@
 
                                 </div>
                         </label>`;
+
+            console.log('noLocalData')
         } else {
             newBox = `<label class="del_chk" for="boxNum_${TDList.length}">
                                 <input type="checkbox" id="boxNum_${TDList.length}" disabled>
@@ -171,7 +173,7 @@
 
         boxWrap.prepend(newCol);
 
-        let TDLobj = {
+        const TDLobj = {
             date: `${nowDate.getFullYear()}년 ${nowDate.getMonth() + 1}월 ${nowDate.getDate()}일 ${days[nowDate.getDay()]}`,
             title: titAdd,
             list : tdAdd,
@@ -307,13 +309,13 @@
     function getTit(tit, num){
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
-        TDList[num].title = tit;
+        console.log(TDList)
 
-        TDLArr = TDList;
-        
-        // localStorage.setItem('toDoList', JSON.stringify(TDList));
-        addLocalData();
+        TDList[num].title = tit;
+        // console.log(TDList);
+        localStorage.setItem('toDoList', JSON.stringify(TDList));
     }
+
     function delList(){
         var list = window.event.target;
 

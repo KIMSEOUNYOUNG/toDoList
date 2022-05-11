@@ -308,12 +308,12 @@
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
 
         TDList[num].title = tit;
-
-        TDLArr = TDList;
+        console.log(TDList);
         
         // localStorage.setItem('toDoList', JSON.stringify(TDList));
         addLocalData();
     }
+    console.log(TDLArr)
     function delList(){
         var list = window.event.target;
 
