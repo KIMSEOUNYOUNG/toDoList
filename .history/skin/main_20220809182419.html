@@ -329,10 +329,8 @@
 
     function addYetList(yetList, num){
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
-        let $list = new Object();
-        
-        let yetTest =  Object.assign($list, addList)
-        TDList[num].list = yetTest;
+
+        TDList[num].list.reList.assign($list);
 
         TDLArr = TDList;        
         addLocalData();

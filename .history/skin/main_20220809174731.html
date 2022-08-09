@@ -324,18 +324,15 @@
         TDList[num].title = tit;
 
         TDLArr = TDList;
+        
+        // localStorage.setItem('toDoList', JSON.stringify(TDList));
         addLocalData();
     }
 
     function addYetList(yetList, num){
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
-        let $list = new Object();
-        
-        let yetTest =  Object.assign($list, addList)
-        TDList[num].list = yetTest;
 
-        TDLArr = TDList;        
-        addLocalData();
+        TDList[num].list.push(yetList)
     }
 
     function delList(){

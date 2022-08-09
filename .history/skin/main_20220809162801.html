@@ -266,37 +266,23 @@
         });
     });
 
-    var yetNum = 0;
-
     // tdList_tit toDoList 추가 이벤트
     function tdPrint(){
         var curretBox = window.event.target;
-        var titBox = $(curretBox).closest('div');
-        var chkInput = titBox.parent().siblings('input').attr('id');
-        var curretIdx = Number(chkInput.split('_')[1]);
 
         if(window.event.keyCode == 13 && $(curretBox).hasClass('td_add')){
             var tdAdd = curretBox.value;
-        
+            
             if(tdAdd !== ''){
                 var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
                 var newList = document.createElement("li");
-                var reDoInfo = $(curretBox).closest('div').siblings('.tdList_tit_box').find('.tdList_remain b');
-                var yet = new Object();
+                var reDo = $(curretBox).closest('div').siblings('.tdList_tit_box').find('.tdList_remain b');
+                var reDoNum = tdLBox.children('li').length;
 
                 $(newList).append('<label for="toDoList" class="fm_ch"><input class="chBox" type="checkbox" name="" id="toDoList"><div id="td_result" class="tdList_list_txt">'+ tdAdd +'</div><button class="list_del" onclick="delList(this);"><i class="icon_trash"></i></button></label></li>');
 
-                yet[yetNum++] = tdAdd;
-
-                addYetList(yet, curretIdx);
-
-                console.log(yet);
-
                 tdLBox.append(newList);
-
-                reDoNum = tdLBox.children('li').length;
-
-                $(reDoInfo).text("할 일 " + reDoNum + "개 남음");
+                $(reDo).text("할 일 " + reDoNum + "개 남음");
                 curretBox.value = null;
 
                 // console.log(remDoList++)
@@ -306,9 +292,10 @@
             }
         } else if(window.event.keyCode == 13 && $(curretBox).hasClass('tdList_tit')){
             var titAdd = curretBox.value;
-            // var titBox = $(curretBox).closest('div');
-            // var chkInput = titBox.parent().siblings('input').attr('id');
-            // var curretIdx = Number(chkInput.split('_')[1]);
+            var titBox = $(curretBox).closest('div');
+            var chkInput = titBox.parent().siblings('input').attr('id');
+
+            var curretIdx = Number(chkInput.split('_')[1]);
 
             getTit(titAdd, curretIdx);
 
@@ -324,20 +311,10 @@
         TDList[num].title = tit;
 
         TDLArr = TDList;
-        addLocalData();
-    }
-
-    function addYetList(yetList, num){
-        let TDList = JSON.parse(localStorage.getItem('toDoList'));
-        let $list = new Object();
         
-        let yetTest =  Object.assign($list, addList)
-        TDList[num].list = yetTest;
-
-        TDLArr = TDList;        
+        // localStorage.setItem('toDoList', JSON.stringify(TDList));
         addLocalData();
     }
-
     function delList(){
         var list = window.event.target;
 

@@ -266,8 +266,6 @@
         });
     });
 
-    var yetNum = 0;
-
     // tdList_tit toDoList 추가 이벤트
     function tdPrint(){
         var curretBox = window.event.target;
@@ -277,7 +275,9 @@
 
         if(window.event.keyCode == 13 && $(curretBox).hasClass('td_add')){
             var tdAdd = curretBox.value;
-        
+            
+            var yetNum = 0;
+
             if(tdAdd !== ''){
                 var tdLBox = $(curretBox).closest('div').siblings('.tdList_list_box');
                 var newList = document.createElement("li");
@@ -324,18 +324,15 @@
         TDList[num].title = tit;
 
         TDLArr = TDList;
+        
+        // localStorage.setItem('toDoList', JSON.stringify(TDList));
         addLocalData();
     }
 
     function addYetList(yetList, num){
         let TDList = JSON.parse(localStorage.getItem('toDoList'));
-        let $list = new Object();
-        
-        let yetTest =  Object.assign($list, addList)
-        TDList[num].list = yetTest;
 
-        TDLArr = TDList;        
-        addLocalData();
+        TDList[num].list.push(yetList)
     }
 
     function delList(){
